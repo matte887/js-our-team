@@ -48,9 +48,23 @@ const team = [
 ];
 
 // Stampo in console le informazioni di nome, ruolo e la stringa della foto.
+// Creo una variabile che serve per portare nell'HTML le informazioni contenute negli oggetti.
+let employeesInfos = "";
+
+// Creo un ciclo che scorre l'array contenente gli oggetti.
 for (let i = 0; i < team.length; i++) {
     const thisItem = team[i];
+
+    // Creo un ciclo che scorre ogni oggetto dell'array...
     for (let key in thisItem) {
+        // ...stampo in console le informazioni contenute in questi oggetti...
         console.log(thisItem[key]);
+
+        // ...e le stampo anche in pagina sottoforma di lista.
+        employeesInfos += `<li>${thisItem[key]}</li>`;
+
     }
 }
+
+const infoList = document.getElementById("info-list");
+infoList.innerHTML = employeesInfos;
