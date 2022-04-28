@@ -48,29 +48,44 @@ const team = [
 ];
 
 // Stampo in console le informazioni di nome, ruolo e la stringa della foto.
-// Creo una variabile che serve per portare nell'HTML le informazioni contenute negli oggetti.
-let employeesInfos = "";
+// Selezione il contenitore delle card.
+let employeeCardContainer = document.querySelector(".team-container");
+
+let employeeImage;
+let employeeName;
+let employeeRole;
 
 // Creo un ciclo che scorre l'array contenente gli oggetti.
 for (let i = 0; i < team.length; i++) {
     const thisItem = team[i];
-
+    
+    
     // Creo un ciclo che scorre ogni oggetto dell'array...
     for (let key in thisItem) {
         // ...stampo in console le informazioni contenute in questi oggetti...
         console.log(thisItem[key]);
-
-        // ...e le stampo anche in pagina sottoforma di lista.
-        // Se la key è image...
+        
+        // ...e le stampo anche in pagina.
         if (key === "image") {
-            // ...stampa sottoforma di immagine.
-            employeesInfos += `<li><img src="img/${thisItem[key]}"></li>`;
-        } else {
-            // Altrimenti stampa come li.
-            employeesInfos += `<li>${thisItem[key]}</li>`;
+            employeeImage = `<img src="img/${thisItem[key]}" alt="${thisItem["name"]}">`;
+        } else if (key === "role") {
+            employeeRole = thisItem[key];
+        } else if (key === "name") {
+            employeeName = thisItem[key];
         }
     }
+    
+    const employeeCard = 
+        `<div class="team-card">
+            <div class="card-image">
+                ${employeeImage}
+            </div>
+            <div class="card-text">
+                <h3>${employeeName}</h3>
+                <p>${employeeRole}</p>
+            </div>
+        </div>`
+    ;
+    employeeCardContainer.innerHTML += employeeCard;
 }
 
-const infoList = document.getElementById("info-list");
-infoList.innerHTML = employeesInfos;
