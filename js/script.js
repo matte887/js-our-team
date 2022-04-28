@@ -13,7 +13,7 @@
 
 
 
-// Array con tutti i membri del team
+// Array con tutti i membri del team.
 const team = [
     {
       name: 'Wayne Barnett',
@@ -61,7 +61,14 @@ for (let i = 0; i < team.length; i++) {
         console.log(thisItem[key]);
 
         // ...e le stampo anche in pagina sottoforma di lista.
-        employeesInfos += `<li>${thisItem[key]}</li>`;
+        // Se la key è image...
+        if (key === "image") {
+            // ...stampa sottoforma di immagine.
+            employeesInfos += `<li><img src="img/${thisItem[key]}"></li>`;
+        } else {
+            // Altrimenti stampa come li.
+            employeesInfos += `<li>${thisItem[key]}</li>`;
+        }
 
     }
 }
