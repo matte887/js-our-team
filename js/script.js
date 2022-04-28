@@ -69,7 +69,6 @@ for (let i = 0; i < team.length; i++) {
             // Altrimenti stampa come li.
             employeesInfos += `<li>${thisItem[key]}</li>`;
         }
-
     }
 }
 
