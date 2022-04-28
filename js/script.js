@@ -51,6 +51,7 @@ const team = [
 // Selezione il contenitore delle card.
 let employeeCardContainer = document.querySelector(".team-container");
 
+// Creo delle variabili dove depositerò di volta in volta le informazioni dei vari dipendenti.
 let employeeImage;
 let employeeName;
 let employeeRole;
@@ -59,13 +60,12 @@ let employeeRole;
 for (let i = 0; i < team.length; i++) {
     const thisItem = team[i];
     
-    
     // Creo un ciclo che scorre ogni oggetto dell'array...
     for (let key in thisItem) {
         // ...stampo in console le informazioni contenute in questi oggetti...
         console.log(thisItem[key]);
         
-        // ...e le stampo anche in pagina.
+        // Deposito nelle variabili precedentemente create, le informazioni.
         if (key === "image") {
             employeeImage = `<img src="img/${thisItem[key]}" alt="${thisItem["name"]}">`;
         } else if (key === "role") {
@@ -74,7 +74,8 @@ for (let i = 0; i < team.length; i++) {
             employeeName = thisItem[key];
         }
     }
-    
+
+    // Creo la stringa contenente tutta la card...
     const employeeCard = 
         `<div class="team-card">
             <div class="card-image">
@@ -86,6 +87,34 @@ for (let i = 0; i < team.length; i++) {
             </div>
         </div>`
     ;
+
+    // ... e la inserisco nel contenitore HTML.
     employeeCardContainer.innerHTML += employeeCard;
 }
 
+// FORM
+const addButton = document.getElementById("addMemberButton");
+
+addButton.addEventListener("click", collectData);
+
+
+// FUNCTION
+function collectData() {
+    const formName = document.getElementById("name").value;
+    const formRole = document.getElementById("role").value;
+    const formImage = document.getElementById("image").value;
+    
+    const newCard = 
+        `<div class="team-card">
+            <div class="card-image">
+                <img src="${formImage}">
+            </div>
+            <div class="card-text">
+                <h3>${formName}</h3>
+                <p>${formRole}</p>
+            </div>
+        </div>`
+        ;
+        
+        employeeCardContainer.innerHTML += newCard;
+}
